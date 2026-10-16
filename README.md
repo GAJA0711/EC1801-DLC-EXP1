@@ -20,12 +20,49 @@ exp1_boolean_min_tb.v	Verilog testbench
 exp1_boolean_min.vcd	VCD waveform dump generated during simulation
 
 ## Verilog Program
-
+module exp1_boolean_min (
+    input  wire A,
+    input  wire B,
+    input  wire C,
+    input  wire D,
+    output wire F
+);
+    // F = B'D' + BD  <=>  F = (B XNOR D)
+    assign F = ( ~B & ~D ) | ( B & D );
+    // alternatively: assign F = ~(B ^ D);
+endmodule
 
 
 ## TestBench Program
 
+// gedit tb.v
+module tb;
+    reg A, B;
+    wire F;
+    // Instantiate the design under test (DUT)
+    fun uut (
+        .A(A),
+        .B(B),
+        .F(F)
+    );
 
+    initial begin
+        // ---- VCD dump setup ----
+        $dumpfile("fun.vcd");   // name of the VCD file to be generated
+        $dumpvars(0, tb);   // dump all signals in this testbench hierarchy
+
+        // ---- Apply all 4 input combinations ----
+        $monitor("Time=%0t A=%b B=%b | F=%b", $time, A, B, F);
+
+        A = 0; B = 0; #10;
+        A = 0; B = 1; #10;
+        A = 1; B = 0; #10;
+        A = 1; B = 1; #10;
+
+        #10 $finish;
+    end
+
+endmodule
 
 
 
@@ -85,6 +122,7 @@ and successfully implemented using Verilog HDL.
 
 ## OUTPUT
 
+<img width="1920" height="1080" alt="Screenshot 2026-10-14 092845" src="https://github.com/user-attachments/assets/d5b924c4-8f09-4e48-ab60-2d6bd6f85413" />
 
 
 The design was compiled and simulated using Synopsys VCS, and the functionality was verified using DVE waveform analysis.
