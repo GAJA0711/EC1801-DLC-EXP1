@@ -117,7 +117,8 @@ was minimized to F=B'D'+BD.
 and successfully implemented using Verilog HDL.
 
 ## OUTPUT
-<img width="1920" height="975" alt="Screenshot 2026-10-16 212334" src="https://github.com/user-attachments/assets/48312e4f-5f57-4c34-a825-ed9de3f8817b" />
+<img width="1920" height="975" alt="Screenshot 2026-10-16 212334" src="https://github.com/user-attachments/assets/c56f5d23-9359-4940-a9fe-d66505ce5de5" />
+
 
 
 
